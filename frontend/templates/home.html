@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div id="invite-container">
+        <div class="envelope">
+            <div class="front flap"></div>
+            <div class="front pocket"></div>
+            <div class="letter">
+                <img src="{% static 'character_cards/'|add:user.username|add:'.png' %}" alt="{{ user.username }} Character Card">
+
+            </div>
+        </div>
+    </div>
+    <div id="info-container">
+        <img src="{% static 'character_pages/'|add:user.username|add:'.png' %}" alt="{{ user.username }} Character Page" class="info-pic">
+        <img src="{% static 'mayhem_mix.png' %}" alt="Mayhem Mix" class="info-pic">
+    </div>
+{% else %}
+    <a href="{% url 'login' %}" class="btn-login">Log In</a>
+{% endif %}
+{% endblock %}
